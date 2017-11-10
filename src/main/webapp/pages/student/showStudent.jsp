@@ -25,7 +25,7 @@
         <a href="addLog.html"><img src="${pageContext.request.contextPath}/images/button/add.gif" class="img"/></a>~-->
         
        <!-- <a href="#"><img src="${pageContext.request.contextPath}/images/button/close.gif" class="img"/></a>
-       <a href="javascript:void(0)" onclick="document.forms[0].submit()"><img src="${pageContext.request.contextPath}/images/button/save.gif" /></a>
+       <a href="javascript:void(0)" onclick="document.forms[0].submit()"><img src="${pageContext.request.contextPath}/images/button/findAll.gif" /></a>
        -->
        <a href="${pageContext.request.contextPath}/pages/student/listStudent.jsp">
        	<img src="${pageContext.request.contextPath}/images/button/tuihui.gif" />

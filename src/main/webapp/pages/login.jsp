@@ -55,8 +55,8 @@ FONT-SIZE: 12px; COLOR: #4b4b4b; LINE-HEIGHT: 18px; TEXT-DECORATION: none
 					密&nbsp;码：<input type="password" name="loginPwd" class="msg" /><br/><br/>
 					&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 					<input type="submit" class="btn" value="登录" />
-
 				</form>
+				<a href="interceptor.action">一键登录</a>
 			</td>
 		</tr>
 	</table>

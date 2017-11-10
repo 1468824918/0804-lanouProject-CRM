@@ -27,14 +27,14 @@
 		d.add('0104','01','就业部');
 		d.add('010401','0104','就业情况','${pageContext.request.contextPath}/pages/graduate/listGraduate.jsp','','right');
 		d.add('0105','01','人力资源部');
-		d.add('010501','0105','部门管理','${pageContext.request.contextPath}/pages/department/listDepartment.jsp','','right');
-		d.add('010502','0105','职务管理','${pageContext.request.contextPath}/pages/post/listPost.jsp','','right');
-		d.add('010503','0105','员工管理','${pageContext.request.contextPath}/pages/staff/listStaff.jsp','','right');
+		d.add('010501','0105','部门管理','${pageContext.request.contextPath}/department.action','','right');
+		d.add('010502','0105','职务管理','${pageContext.request.contextPath}/findPost.action','','right');
+		d.add('010503','0105','员工管理','${pageContext.request.contextPath}/pages/hr/listStaff.jsp','','right');
 		
 		document.write(d);
 	</script>
 	<%-- 将用户跟踪页面修改成
-		* 原始页面位置：WEB-INF/pages/crm
+		* 原始页面位置：WEB-INF/pages/hr
 		* 修改页面位置：WEB-INF/pages/follow
 	--%>
 </div>

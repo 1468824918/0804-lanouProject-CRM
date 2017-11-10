@@ -13,12 +13,37 @@
     <!--当然这个配置可以不写, 因为在struts2-spring-plugin里面已经有了-->
     <constant name="struts.objectFactory" value="spring"/>
 
+    <!--引用xml文件-->
+    <include file="com/lanou/hr/action/DepartmentStruts.xml"/>
+    <include file="com/lanou/hr/action/PostStruts.xml"/>
+
     <package name="staffAction" extends="json-default">
+        <!--登录拦截器-->
+        <interceptors>
+            <interceptor name="loginInterceptor" class="com.lanou.hr.interceptor.StaffInterceptor">
+                <param name="excludeMethods">login</param>
+            </interceptor>
+            <interceptor-stack name="crmInterceptorStack">
+                <interceptor-ref name="loginInterceptor"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+        </interceptors>
+
+        <default-interceptor-ref name="crmInterceptorStack"/>
+
         <action name="staffAction"
                 class="staffAction"
                 method="login">
             <result name="success">/pages/frame.jsp</result>
             <result name="input">/pages/login.jsp</result>
+        </action>
+
+
+        <action name="interceptor"
+                class="staffAction"
+                method="interceptor">
+            <result name="success">/pages/frame.jsp</result>
+            <result name="login">/pages/login.jsp</result>
         </action>
     </package>
 </struts>

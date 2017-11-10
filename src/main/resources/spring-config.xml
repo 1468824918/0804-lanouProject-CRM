@@ -32,11 +32,41 @@
         <property name="configLocation" value="classpath:hibernate.cfg.xml"/>
     </bean>
 
-    <!--创建userDao对象-->
-    <bean id="staffDao" class="com.lanou.crm.dao.impl.StaffDaoImpl">
+
+
+
+    <!--创建Dao对象-->
+    <bean id="staffDao" class="com.lanou.hr.dao.impl.StaffDaoImpl">
         <!--为继承来的sessionFactory赋值-->
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
+
+
+    <bean id="departmentDao" class="com.lanou.hr.dao.impl.DepartmentDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="postDao" class="com.lanou.hr.dao.impl.PostDaoImpl">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <!--创建Service对象-->
+
+    <bean id="staffService" class="com.lanou.hr.service.impl.StaffServiceImpl">
+        <property name="staffDao" ref="staffDao"/>
+    </bean>
+
+    <bean id="departmentService" class="com.lanou.hr.service.impl.DepartmentServiceImpl">
+        <property name="departmentDao" ref="departmentDao"/>
+    </bean>
+
+    <bean name="postService" class="com.lanou.hr.service.impl.PostServiceImpl">
+        <property name="postDao" ref="postDao"/>
+    </bean>
+
+
+
+
 
     <bean id="transactionManager"
           class="org.springframework.orm.hibernate5.HibernateTransactionManager">
@@ -44,14 +74,8 @@
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
 
+
     <!--配置顾问(通知)-->
-    <!--
-        advice是什么?
-        Spring已经为我们提供了一个事务管理器,它里面封装了事务方法,比如开启事务,提交事务,事务回滚,
-        并且已经定义好了,在接入点调用的某个时机调用事务的某个方法
-        (也就是说,在前置通知定义开启事务,正常后置通知提交事务,异常后置通知定义回滚事务,我们需要做的就是告知Spring在哪些目标方法上添加切面)
-        advisor:中定义了上述的规则,将advisor配置给切点后,Spring会自动织入切面
-    -->
     <tx:advice id="staffAdvisor" transaction-manager="transactionManager">
         <tx:attributes>
             <tx:method name="*"/>
@@ -61,7 +85,7 @@
     <!--配置切面-->
     <aop:config>
         <!--声明切点-->
-        <aop:pointcut id="userPointCut" expression="execution(* com.lanou.crm.dao.impl.*.*(..))"/>
+        <aop:pointcut id="userPointCut" expression="execution(* com.lanou.hr.dao.impl.*.*(..))"/>
         <aop:advisor advice-ref="staffAdvisor" pointcut-ref="userPointCut"/>
     </aop:config>
 </beans>
